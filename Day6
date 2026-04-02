@@ -1,0 +1,218 @@
+public class lc1108 {
+public String defangIPaddr(String address) {
+char[] ch=address.toCharArray();
+StringBuilder str=new StringBuilder();
+for(int i=0;i<ch.length;i++)
+{
+if(ch[i]=='.')
+{
+str.append("[.]");
+}
+else
+{
+str.append(ch[i]);
+}
+}
+return new String(str);
+
+        
+
+}
+}
+
+public class lc1221 {
+public int balancedStringSplit(String s) {
+int sum=0;
+int c=0;
+for(char ch:s.toCharArray())
+{
+if(ch=='R')
+{
+sum+=1;
+}
+if(ch=='L')
+{
+sum-=1;
+}
+if(sum==0)
+{
+c++;
+}
+}
+return c;
+}
+}
+
+public class lc1470 {
+public int[] shuffle(int[] nums, int n) {
+int l=nums.length;
+int[] arr=new int[l];
+int i=0,k=0,j=n;
+while(j<l)
+{
+arr[k]=nums[i++];
+k++;
+arr[k]=nums[j++];
+k++;
+}
+return arr;
+}
+}
+
+
+public class lc1768 {
+public String mergeAlternately(String word1, String word2) {
+int l1=word1.length();
+int l2=word2.length();
+char[] w1=word1.toCharArray();
+char[] w2=word2.toCharArray();
+int min=Math.min(l1,l2);
+StringBuilder sb=new StringBuilder();
+int i=0;
+while(i<min)
+{
+sb.append(w1[i]);
+sb.append(w2[i]);
+i++;
+}
+while(i<l1)
+{
+sb.append(w1[i]);
+i++;
+}
+while(i<l2)
+{
+sb.append(w2[i]);
+i++;
+}
+return new String(sb);
+}
+}
+
+public class lc189 {
+public void rotate(int[] nums, int k) {
+int n=nums.length;
+k%=n;
+reverse(nums,0,n-1);
+reverse(nums,0,k-1);
+reverse(nums,k,n-1);
+
+}
+public int[] reverse(int[] nums,int l,int r)
+{
+while(l<r)
+{
+int t=nums[l];
+nums[l]=nums[r];
+nums[r]=t;
+l++;
+r--;
+}
+return nums;
+}
+}
+
+public class lc28 {
+public int strStr(String haystack, String needle) {
+int l1=haystack.length();
+int l2=needle.length();
+for(int i=0, j=l2;j<=l1;i++,j++)
+{
+if((haystack.substring(i,j)).equals(needle))
+{
+return i;
+}
+}
+return -1;
+}
+}
+
+public class lc3232 {
+public boolean canAliceWin(int[] nums) {
+int sum1=0;int sum2=0;
+for(int num:nums)
+{
+if(num<10)
+{
+sum1+=num;
+}
+else
+{
+sum2+=num;
+}
+}
+return sum1!=sum2;
+}
+}
+
+public class lc345 {
+public String reverseVowels(String s) {
+int l=0;
+
+char[] arr=s.toCharArray();
+int h=arr.length-1;
+while(l<h)
+{
+if(!(isv(arr[l])) )
+{
+l++;
+}
+if(!(isv(arr[h])))
+{
+h--;
+}
+if(isv(arr[l]) && isv(arr[h]))
+{            
+char c=arr[l];
+arr[l]=arr[h];
+arr[h]=c;
+l++;
+h--;
+}
+
+
+
+}
+return new String(arr);
+}
+public boolean isv(char ch)
+{
+return !(ch!='a'&&ch!='e'&&ch!='i'&&ch!='o'&&ch!='u'&&ch!='A'&&ch!='E'&&ch!='I'&&ch!='O'&&ch!='U');
+}
+}
+
+public class lc345 {
+public String reverseVowels(String s) {
+int l=0;
+
+char[] arr=s.toCharArray();
+int h=arr.length-1;
+while(l<h)
+{
+if(!(isv(arr[l])) )
+{
+l++;
+}
+if(!(isv(arr[h])))
+{
+h--;
+}
+if(isv(arr[l]) && isv(arr[h]))
+{            
+char c=arr[l];
+arr[l]=arr[h];
+arr[h]=c;
+l++;
+h--;
+}
+
+
+
+}
+return new String(arr);
+}
+public boolean isv(char ch)
+{
+return !(ch!='a'&&ch!='e'&&ch!='i'&&ch!='o'&&ch!='u'&&ch!='A'&&ch!='E'&&ch!='I'&&ch!='O'&&ch!='U');
+}
+}

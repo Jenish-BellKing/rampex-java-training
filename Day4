@@ -1,0 +1,114 @@
+Leetcode 390:
+
+class Solution {
+    public int lastRemaining(int n) 
+    {
+        int start =1;
+        int step=1;
+        int remaining=n;
+        boolean left=true;
+        while(remaining>1)
+        {
+            if(left|remaining%2==1)
+            {
+                start+=step;
+            }
+            remaining/=2;
+            step*=2;
+            left=!left;
+        } 
+        return start;   
+    }
+}
+
+Leetcode 66:
+
+class Solution {
+    public int[] plusOne(int[] digits) 
+    {
+        int n=digits.length-1;
+        for(int i=n;i>=0;i--)
+        {
+            if(digits[i]<9)
+            {
+                digits[i]++;
+                return digits;
+            }
+            digits[i]=0;
+        }
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
+        return digits;
+    }
+}
+
+Leetcode 1041:
+
+class Solution 
+{
+    public boolean isRobotBounded(String instructions) 
+    {
+        int len=instructions.length();
+        int dir=0;
+        int x=0,y=0;
+        char[] arr=instructions.toCharArray();
+        for(int i=0;i<len;i++)
+        {
+            if(arr[i]=='G')
+            {
+                if(dir==0) y++;
+                else if(dir==1) x++;
+                else if(dir==2) y--;
+                else x--;
+            }
+            else if(arr[i]=='L')
+            {
+                dir=(dir+3)%4;
+            }
+            else
+            {
+                dir=(dir+1)%4;
+            }
+        }
+        if(dir==0 &&((x!=0)||(y!=0))) return false;
+        return true;
+    }
+}
+
+leetcode 2582:
+
+class Solution {
+    public int passThePillow(int n, int time) {
+        int a=2*(n-1);
+        int t = time%a ;
+
+        if (t<n) {
+            return 1+t;
+        } else {
+            return n-(t-(n-1));
+        }
+    }
+}
+
+
+Leetcode 441:
+
+class Solution {
+    public int arrangeCoins(int n) {
+        int rows=1;
+        while(n>0)
+        {
+            rows++;
+            n-=rows;
+        }
+        return rows-1;
+    }
+}
+
+Leetcode 319:
+
+class Solution {
+    public int bulbSwitch(int n) {
+        return (int) Math.sqrt(n);
+    }
+}
