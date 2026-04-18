@@ -1,0 +1,121 @@
+/*
+concurrency: executing multiple tasks at the same time
+real time eg: cooking while listening to music
+*/
+class SampleThread extends Thread{
+    String name;
+    SampleThread(String name){
+        this.name = name;
+    }
+    public void run(){
+        for(int i=0;i<5;i++){
+            System.out.println(name+" "+i);
+        }
+    }
+}
+
+
+public class Concurrency {
+    public static void main(String[] args) {
+        SampleThread t1 = new SampleThread("Thread 1");
+        SampleThread t2 = new SampleThread("Thread 2");
+        t1.start();
+        t2.start();
+    }
+}
+
+class Bank{
+    int bal=2000;
+    synchronized void deposit(int amt){
+        bal+=amt;
+    }
+    synchronized void withdraw(int amt){
+        if(bal>=amt){
+            bal-=amt;
+            System.out.println("withdraw successful\n curr bal: "+bal);
+        }
+        else{
+            System.out.println("insufficent bal");
+        }
+    }
+}
+class BankThread{
+    Bank bank;
+    BankThread(Bank bank){
+        this.bank = bank;
+    }
+    public void run(){
+        bank.deposit(100);
+        bank.withdraw(800);
+    }
+}
+public class Synchronization {
+    public static void main(String[] args) {
+        Bank b=new Bank();
+        BankThread t1 = new BankThread(b);
+        BankThread t2 = new BankThread(b);
+        System.out.println("t1");
+        t1.run();
+        System.out.println("t2");
+        t2.run();
+    }
+}
+
+/*
+life cycle of thread()
+*/
+class SampleThread1 extends Thread{
+    @Override
+    public void run(){
+        System.out.println("thread running using Thread class");
+    }
+}
+class SampleThread2 implements Runnable{
+    @Override
+    public void run(){
+        try{
+            System.out.println("Thread is running using Runnable interface");
+            Thread.sleep(6000);
+            System.out.println("after sleep");
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+}
+public class ThreadExample {
+    public static void main(String[] args) {
+        SampleThread1 t1 = new SampleThread1();
+        t1.start();
+        Thread t2 = new Thread(new SampleThread2());
+        t2.start();
+    }
+}
+
+/*
+single thread ->  runs step by step execute one task at a time
+advantages:
+    - takes longer time to execute
+    - it waits until bloacking task is completed
+multi thread -> runs multiple task at a time
+concurrency -> task1 - task2 - task3(switching between tasks)
+parallelism -> task1 - task2 - task3 (running at the same time)
+process -> program in execution
+
+*/
+public class thread{
+    public  static void main(String[] args){
+        task1();
+        task2();
+    }
+    static void task1(){
+        for(int i=0;i<5;i++){
+            System.out.println("task 1: "+i);
+        }
+    }
+    static void task2(){
+        for(int i=0;i<5;i++){
+            System.out.println("task 2: "+i);
+        }
+    }
+}
