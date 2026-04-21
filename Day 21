@@ -1,0 +1,75 @@
+package Day21;
+
+import java.util.List;
+import java.util.function.Consumer;
+
+class Student{
+    String name;
+    Student(String name){
+        this.name=name;
+    }
+}
+public class ConsumerEG {
+    public static void main(String[] args) {
+        Consumer<Student> printstr=s->System.out.println(s);
+        Consumer<Student> printname=s->System.out.println(s.name);
+        printstr.accept(new Student("String"));//returns obj reference,eg:Day21.Student@15db9742
+        printname.accept(new Student("Garcia"));
+        List<String> names=List.of("a","b","c");
+        names.forEach(System.out::println);//syntax for lambda expression
+    }
+}
+
+package Day21;
+/*
+Evolution :
+  Java 1 - wora
+  Java 5 - foreach loop,generics
+  Java 7 - Exception handling
+  Java 8 - lambda expression (interface with single abstract method)
+*/
+@FunctionalInterface
+interface Math{
+  int add(int a,int b);
+}
+@FunctionalInterface
+interface Exercise{
+  void sayhello();
+}
+public class LambdaEG {
+  public static int add(int a,int b){
+        return a+b;
+    }
+    public static void main(String[] args) {
+      /*Math m=new Math() {
+        @Override
+        public int add(int a, int b) {
+            return a+b;
+        }
+      };*/
+      Math m=(a,b)->a+b;
+      Exercise e=()->System.out.println("Hello");
+      e.sayhello();
+      System.out.println(m.add(10,20));
+    }
+}
+
+package Day21;
+
+import java.util.function.Predicate;
+class Stud{
+    int marks;
+    public Stud(int marks){
+        this.marks=marks;
+    }
+}
+public class PredicateEG {
+    public static void main(String[] args) {
+        Predicate<Integer> iseven=n->n%2==0;
+        Predicate<Integer> isodd=iseven.negate();
+        Predicate<Stud> ispass=s->s.marks>=35;
+        System.out.println(iseven.test(1));
+        System.out.println(isodd.test(5));
+        System.out.println(ispass.test(new Stud(40)));
+    }
+}
